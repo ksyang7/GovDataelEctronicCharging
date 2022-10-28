@@ -58,5 +58,6 @@ json Data 를 전달 받아 MySQL DB 에 데이터 저장
 * Spring REST
 * java
 * MySQL
+* Mybatis
 
 
