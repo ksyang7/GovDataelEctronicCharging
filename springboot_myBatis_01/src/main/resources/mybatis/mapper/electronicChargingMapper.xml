@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pro.yang.mapper.ElectronicChargingMapper">
+		<select id="getElectronicChargingAll" resultType="com.pro.yang.dto.ElectronicChargingDTO">
+			SELECT CHARGING_ID
+						,CHARGING_NAME
+						,CHARGING_ADDR
+						,CHARGING_ADDR_DETAIL
+						,CHARGING_LONGITUDE
+						,CHARGING_LATITUDE
+						,CHARGING_USAGE_TIME
+			 FROM ELECTRONIC_CHARGING		
+		</select>	
+
+		<insert id="insertElectronicCharging" parameterType="com.pro.yang.dto.ElectronicChargingDTO">
+			INSERT INTO ELECTRONIC_CHARGING(
+				 CHARGING_ID
+				,CHARGING_NAME
+				,CHARGING_ADDR
+				,CHARGING_ADDR_DETAIL
+				,CHARGING_LONGITUDE
+				,CHARGING_LATITUDE
+				,CHARGING_USAGE_TIME
+			) VALUES (
+				 #{ElectronicChargingDTO.charging_id}
+				,#{ElectronicChargingDTO.charging_name}
+				,#{ElectronicChargingDTO.charging_addr}
+				,#{ElectronicChargingDTO.charging_addr_detail}
+				,#{ElectronicChargingDTO.charging_longitude}
+				,#{ElectronicChargingDTO.charging_latitude}
+				,#{ElectronicChargingDTO.charging_usage_time}		
+			)
+		</insert>
+
+		<select id="getElectronicChargingList" parameterType="double" resultType="com.pro.yang.dto.ElectronicChargingDTO">
+			SELECT CHARGING_ID
+						,CHARGING_NAME
+						,CHARGING_ADDR
+						,CHARGING_ADDR_DETAIL
+						,CHARGING_LONGITUDE
+						,CHARGING_LATITUDE
+						,CHARGING_USAGE_TIME
+			 FROM ELECTRONIC_CHARGING	
+			WHERE cast(CHARGING_LONGITUDE as unsigned) <![CDATA[<=]]> #{longitude} 
+			     AND cast(CHARGING_LATITUDE as unsigned) <![CDATA[<=]]> #{latitude} 
+		</select>	
+	
+</mapper>
