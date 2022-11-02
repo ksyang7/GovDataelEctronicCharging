@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pro.yang.mapper.UserProfileMapper">
+
+    <select id="getUserProfile" resultType="com.pro.yang.dto.UserProfileDTO">
+    	SELECT * FROM  UserProfile
+    	 WHERE id = #{id}
+    </select>
+    
+    <select id="getUserProfileList" resultType="com.pro.yang.dto.UserProfileDTO">
+    	SELECT * FROM  UserProfile
+    </select>
+    
+    <insert id="insertUserProfile" parameterType="com.pro.yang.dto.UserProfileDTO">
+    	INSERT INTO UserProfile (
+    			id, name, phone, address
+	    	) VALUES (
+	    		  #{UserProfileDTO.id}
+	    		, #{UserProfileDTO.name}
+	    		, #{UserProfileDTO.phone}
+	    		, #{UserProfileDTO.address}
+    		)
+    </insert>
+    
+    <update id="updateUserProfile" parameterType="com.pro.yang.dto.UserProfileDTO">
+    	UPDATE UserProfile 
+    		set  name = #{UserProfileDTO.name}
+    		    , phone = #{UserProfileDTO.phone}
+    		    , address = #{UserProfileDTO.address} 
+   		WHERE
+   		 		 id = #{id}
+    </update>
+    
+    <delete id="deleteUserProfile" parameterType="string">
+    	DELETE FROM UserProfile 
+    	WHERE 
+    			id = #{id}
+    </delete>
+ </mapper>
